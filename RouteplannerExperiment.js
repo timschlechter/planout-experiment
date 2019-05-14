@@ -8,8 +8,9 @@ class RouteplannerExperiment extends planout.Experiment {
   assign(params, args) {
     params.set(
       "service",
-      new planout.Ops.Random.UniformChoice({
+      new planout.Ops.Random.WeightedChoice({
         choices: ["routeplanner", "google"],
+        weights: [0.25, 0.75],
         unit: args.id
       })
     );

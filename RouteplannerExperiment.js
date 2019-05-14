@@ -1,6 +1,6 @@
 const planout = require("planout");
 
-module.exports = class RouteplannerExperiment extends planout.Experiment {
+class RouteplannerExperiment extends planout.Experiment {
   setup() {
     this.name = "RouteplannerExperiment";
   }
@@ -8,9 +8,8 @@ module.exports = class RouteplannerExperiment extends planout.Experiment {
   assign(params, args) {
     params.set(
       "service",
-      new planout.Ops.Random.WeightedChoice({
+      new planout.Ops.Random.UniformChoice({
         choices: ["routeplanner", "google"],
-        weights: [0.2, 0.8],
         unit: args.id
       })
     );
@@ -30,3 +29,5 @@ module.exports = class RouteplannerExperiment extends planout.Experiment {
     return this._exposureLogged;
   }
 };
+
+module.exports = RouteplannerExperiment;

@@ -3,7 +3,8 @@ const app = express();
 const RouteplannerExperiment = require("./RouteplannerExperiment.js");
 
 app.get("/", (req, res) => {
-  const experiment = new RouteplannerExperiment({ id: 1 });
+  const unit = req.query['unit'];
+  const experiment = new RouteplannerExperiment({ id: unit });
   const result = experiment.get("service");
   res.send(result);
 });
